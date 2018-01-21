@@ -1,7 +1,7 @@
 {
   "name": "redux-get",
   "version": "1.0.0",
-  "description": "Redux enhancer to access selectors and state via a simple `store.get()` method via an object path.",
+  "description": "Redux enhancer to access state props and selectors via a simple store.get() method.",
   "main": "lib/redux-get.js",
   "module": "es/redux-get.js",
   "scripts": {
