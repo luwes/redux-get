@@ -41,6 +41,5 @@ describe('Index', () => {
       const store = createStore(reducer, createGetters(selectors))
       expect(store.get('not.existing', 999)).toBe(999)
     })
-
   })
 })
