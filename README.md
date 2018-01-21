@@ -11,6 +11,41 @@ Redux enhancer to access state props and selectors via a simple store.get() meth
 npm i --save redux-get
 ```
 
+## Usage
+
+### `selectors/ui/index.js`
+
+```js
+export function doubleDigits(state) {
+  return state.ui.digits * 2
+}
+```
+
+### `selectors/index.js`
+
+```js
+import * as todos from './todos'
+import * as ui from './ui'
+
+const selectors = {
+  todos,
+  ui
+}
+
+export default selectors
+```
+
+### `app.js`
+```js
+import reducer from './reducer'
+import selectors from './selectors'
+
+const store = createStore(reducer, createGetters(selectors))
+
+console.log(store.get('ui.digits')) // gets the state property, e.g. 22
+console.log(store.get('ui.doubleDigits')) // gets the derived state via a selector, e.g. 44
+```
+
 ## API
 
 `createGetters(selectors)`
@@ -33,40 +68,6 @@ Returns the selectors map.
 A selector `'object.dot.path'` or `['array', 'path']`.
 
 Returns a selector function.
-
-## Usage
-
-### `ui/index.js`
-
-```js
-export function doubleDigits(state) {
-  return state.ui.digits * 2
-}
-```
-
-### `selectors.js`
-
-```js
-import * as todos from './todos'
-import * as ui from './ui'
-
-const selectors = {
-  todos,
-  ui
-}
-
-export default selectors
-```
-
-### `app.js`
-```js
-import reducer from './reducer'
-import selectors from './selectors'
-
-const store = createStore(reducer, createGetters(selectors))
-
-console.log(store.get('ui.doubleDigits')
-```
 
 ## Related
 
