@@ -39,3 +39,7 @@ Returns a selector function.
 ```js
 const store = createStore(reducer, createGetters(selectors))
 ```
+
+## Related
+
+If you would like to access selectors as straight up getters from the state object returned by `store.getState()` have a look at this project https://github.com/luwes/redux-proxy-selectors
