@@ -21,7 +21,7 @@ A single map containing all the selectors with a similar shape as your reducer.
 `store.get(selector)`
 
 **selector**
-A selector `function`, `object.dot.path` or `['array', 'path']`.
+A selector `function`, `'object.dot.path'` or `['array', 'path']`.
 
 Returns the store value.
 
@@ -30,14 +30,42 @@ Returns the store value.
 Returns the selectors map.
 
 `store.createGetter(paths)`
-A selector `object.dot.path` or `['array', 'path']`.
+A selector `'object.dot.path'` or `['array', 'path']`.
 
 Returns a selector function.
 
 ## Usage
 
+### `ui/index.js`
+
 ```js
+export function doubleDigits(state) {
+  return state.ui.digits * 2
+}
+```
+
+### `selectors.js`
+
+```js
+import * as todos from './todos'
+import * as ui from './ui'
+
+const selectors = {
+  todos,
+  ui
+}
+
+export default selectors
+```
+
+### `app.js`
+```js
+import reducer from './reducer'
+import selectors from './selectors'
+
 const store = createStore(reducer, createGetters(selectors))
+
+console.log(store.get('ui.doubleDigits')
 ```
 
 ## Related
